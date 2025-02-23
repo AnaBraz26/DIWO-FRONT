@@ -7,7 +7,7 @@ interface cardPaisesProp{
     img: string,
 }
 
-const cardPaises: React.FC<cardPaisesProp> = ({
+const CardPaises: React.FC<cardPaisesProp> = ({
     nome,
     local,
     meta,
@@ -26,4 +26,4 @@ const cardPaises: React.FC<cardPaisesProp> = ({
         )
     }
 
-    export default cardPaises;
+    export default CardPaises;

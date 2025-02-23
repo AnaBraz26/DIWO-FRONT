@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
 import { Formik, Form, Field } from "formik";
+import InputMask from "react-input-mask-next";
 import React, { useState, useEffect } from "react";
 import NavBar from "./components/NavBar";
-import InputMask from "react-input-mask-next";
-
+import CardPaises from "./components/cardPaises";
 
 export default function Home(){
 
@@ -41,8 +41,12 @@ export default function Home(){
         </div>      
       </div>
 
-      <div>
-        
+      <div className="flex flex-wrap ml-32">
+        <CardPaises
+          nome = "Brasil"
+          local = "Brasilia"
+          meta = "10/2025"
+          />
       </div>
 
     </div>
