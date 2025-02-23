@@ -1,12 +1,30 @@
 "use client";
-import Image from "next/image";
-import { Formik, Form, Field } from "formik";
-import InputMask from "react-input-mask-next";
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import NavBar from "./components/NavBar";
 import CardPaises from "./components/cardPaises";
 
+interface Pais{
+  nome: string;
+  bandeira: string;
+  local: string;
+  meta: string;
+}
+
 export default function Home(){
+  const [paises, setPaises] = useState<Pais[]>([]);
+
+  useEffect(() => {
+    fetch("https://restcountries.com/v2/all")
+    .then ((response) => response.json())
+    .then ((data)=> {
+       const paisesFormatados: Pais[] = data.map((pais: any) => ({
+        nome: pais.translations?.pt || pais.name,
+        bandeira: pais.flag?.svg || pais.flag,
+       }));
+       setPaises(paisesFormatados)
+    })
+    .catch((erro) => console.error("Erro ao carregar os paises:", erro));
+  }, []);
 
   return (
     <div>
@@ -42,11 +60,13 @@ export default function Home(){
       </div>
 
       <div className="flex flex-wrap ml-32">
-        <CardPaises
-          nome = "Brasil"
-          local = "Brasilia"
-          meta = "10/2025"
-          />
+        {paises.map((pais) => (
+          <CardPaises
+            nome = {pais.nome}
+            local = {pais.local}
+            meta = {pais.meta}
+            img = {pais.bandeira}/>
+        ))}
       </div>
 
     </div>
