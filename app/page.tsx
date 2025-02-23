@@ -35,7 +35,7 @@ export default function Home(){
       {/* Formulário de Seleção e Edição */}
       <div className="flex justify-center items-center bg-green-600 p-20">
         
-        <div className="flex flex-col w=1/3ml-4">
+        <div className="flex flex-col w=1/3 ml-4">
           <h2 className="mr-4 ml-5 text-white">País</h2>
           <input className="ml-4 block w-full px-3 py-2 border bg-white shadow-sm focus:ring-indigo-500focus:border-indigo-500 sm:text-sm rounded-md"
                  placeholder="Selecione"></input>
@@ -62,9 +62,9 @@ export default function Home(){
       <div className="flex flex-wrap ml-32">
         {paises.map((pais) => (
           <CardPaises
-            nome = {pais.nome}
-            local = {pais.local}
-            meta = {pais.meta}
+            nome = "BRASIL"
+            local = "Brasilia"
+            meta = "202"
             img = {pais.bandeira}/>
         ))}
       </div>
