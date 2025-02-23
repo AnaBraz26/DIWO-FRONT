@@ -60,8 +60,9 @@ export default function Home(){
       </div>
 
       <div className="flex flex-wrap ml-32">
-        {paises.map((pais) => (
+        {paises.map((pais, index) => (
           <CardPaises
+            key={index}
             nome = "BRASIL"
             local = "Brasilia"
             meta = "202"
