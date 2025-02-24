@@ -1,7 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef} from "react";
 import NavBar from "./components/NavBar";
 import CardPaises from "./components/cardPaises";
+import InputMask from "inputmask";
 
 interface Pais{
   nome: string;
@@ -13,7 +14,17 @@ interface Pais{
 export default function Home(){
   const [paises, setPaises] = useState<Pais[]>([]);
   const [paisSelecionado, setPaisSelecionado] = useState<string>("");
-
+  const [meta, setMeta] = useState("");
+  const metaRef = useRef<HTMLInputElement>(null);
+ 
+  useEffect(() => {
+    // Aplica a máscara "MM/AAAA" quando o componente for montado
+    const im = new InputMask("99/9999");  // Máscara MM/AAAA
+    if (metaRef.current) {
+      im.mask(metaRef.current);
+    }
+  }, []);
+  
   useEffect(() => {
     fetch("https://restcountries.com/v2/all")
     .then ((response) => response.json())
@@ -59,8 +70,10 @@ export default function Home(){
 
         <div className="flex flex-col w=1/3 ml-4">
         <h2 className="mr-4 ml-5 text-white">Meta</h2>
-        <input className="ml-4 block w-full px-3 py-2 border bg-white shadow-sm focus:ring-indigo-500focus:border-indigo-500 sm:text-sm rounded-md"
-                 placeholder="Mês/Ano"></input>
+        <input ref={metaRef} 
+               value={meta} onChange={(e) => setMeta(e.target.value)}
+               className="text-black ml-4 block w-full px-3 py-2 border bg-white shadow-sm focus:ring-indigo-500focus:border-indigo-500 sm:text-sm rounded-md"
+               placeholder="MM/AAAA"/>
         </div>
 
         <div className="flex flex-col ml-4 w=1/3">
@@ -75,7 +88,7 @@ export default function Home(){
             key={index}
             nome = {pais.nome}
             local = "Brasilia"
-            meta = "202"
+            meta = ""
             img = {pais.bandeira}/>
         ))}
       </div>
