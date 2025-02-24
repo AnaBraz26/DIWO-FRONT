@@ -45,8 +45,7 @@ const CardPaises: React.FC<cardPaisesProp> = ({
                             <button onClick={openModal2} className="w-6 cursor-pointer">
                                 <img src="x.svg" alt="Excluir"></img>   
                             </button>
-                                <Excluir isVisible2={isModalVisible2} onClose2={closeModal2}/>
-                                         
+                                <Excluir isVisible2={isModalVisible2} onClose2={closeModal2}/>     
                         </div>                          
                             
                     </div>
@@ -56,6 +55,7 @@ const CardPaises: React.FC<cardPaisesProp> = ({
                     <h2 className="text-black/70">{meta}</h2>
 
                 </article>
+                
             </div>  
         )
     }

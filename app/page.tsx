@@ -87,8 +87,8 @@ export default function Home(){
           <CardPaises
             key={index}
             nome = {pais.nome}
-            local = "Brasilia"
-            meta = ""
+            local = "Local"
+            meta = "MM/AAAA"
             img = {pais.bandeira}/>
         ))}
       </div>
